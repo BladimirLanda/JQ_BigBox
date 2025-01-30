@@ -22,7 +22,7 @@ function app() {
             return;
         }
 
-        //Creación SlideShow
+        //Creación
         let contenido = "";
         contenido += '<div class="bigbox-fondo"></div>';
 
