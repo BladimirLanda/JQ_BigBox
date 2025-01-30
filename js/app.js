@@ -4,24 +4,27 @@ $(document).ready( app() );
 
 function app() {
 
+    //Plugin
     $.bigBox = function(opciones) {
 
+        //Parametros
         opcionesPlugin = $.extend({
-            icon: 'bi bi-pin-fill',
+            icon: "bi bi-pin-fill",
             titulo: undefined,
             texto: undefined,
-            textoBtn: 'Empezar'
+            textoBtn: "Empezar"
         }, opciones);
 
-        const {icon, titulo, texto, textoBtn} = opcionesPlugin;
+        const { icon, titulo, texto, textoBtn } = opcionesPlugin;
 
         if(!titulo || !texto) {
-            alert('se necesita especificar titulo y contenido');
+            alert('Se necesita especificar titulo y contenido');
             return;
         }
 
+        //Creación SlideShow
         let contenido = "";
-        contenido = '<div class="bigbox-fondo"></div>';
+        contenido += '<div class="bigbox-fondo"></div>';
 
         contenido += `
         <div class="bigbox-container">
@@ -48,9 +51,10 @@ function app() {
 
         $('body').prepend(contenido);
 
+        //Funciones
         animarEntrada();
 
-        //Cerrar
+        //--
         $('.bigbox-closed').on('click', function() {
             animarSalida();
 
@@ -59,7 +63,7 @@ function app() {
             }, 1000);
         });
 
-        //Principal
+        //--
         $('.bigbox-btn').on('click', function() {
             animarSalida();
 
@@ -69,19 +73,19 @@ function app() {
         });
 
 
-        //Animar Entrada
+        //--
         function animarEntrada() {
             const $fondo = $('.bigbox-fondo');
             const $bigBox = $('.bigbox-container');
 
 
-            const anchoW = $(window).width();
-            const altoW = $(window).height();
+            const anchoW = $(window).width(); //Extrae el valor width
+            const altoW = $(window).height(); //Extrae el valor height
 
             const anchoB = $bigBox.width();
             const altoB = $bigBox.height();
 
-            const calcleft = (anchoW/2) - (anchoB/2);
+            const calcleft = (anchoW/2) - (anchoB/2); 
             const calcTop = (altoW/2) - (altoB/2);
 
             $bigBox.css({
@@ -91,15 +95,15 @@ function app() {
 
 
             $fondo.fadeIn(500);
-
             $bigBox.fadeIn(500);
+
             $bigBox.animate({
                 opacity: 1,
                 top: calcTop
             }, 1000);
         }
 
-        //Animar Salida
+        //--
         function animarSalida() {
             const $fondo = $('.bigbox-fondo');
             const $bigBox = $('.bigbox-container');
@@ -108,7 +112,7 @@ function app() {
             $bigBox.fadeOut(500);
         }
 
-        //Remover
+        //--
         function removeBigbox() {
             const $fondo = $('.bigbox-fondo');
             const $bigBox = $('.bigbox-container');
